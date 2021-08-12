@@ -6,6 +6,8 @@
 {% for key, value in name.items() %}
 # {{ key }}={{ value }}
 {% endfor %}
+{% else %}
+# {{ name.name }}
 {% endif %}
 {% if name.protocol is defined %}
 protocol={{ name.protocol }}
@@ -34,4 +36,6 @@ zone={{ name.zone }}
 {% if name.address is defined %}
 {{ name.address }}
 {% endif %}
+
+
 {% endfor %}

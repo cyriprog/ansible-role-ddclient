@@ -8,12 +8,10 @@ ddclient_apt_install:
   - "libio-socket-ssl-perl"
   - "libio-socket-inet6-perl"
   - "libjson-pp-perl"
-
-ddclient_git_repo_http: "https://github.com/ddclient/ddclient.git"
-ddclient_git_repo_dest: "{{ ansible_user_dir }}/git/ddclient"
+  - "ddclient"
 
 ddclient_file:
-  directory: /etc/ddclient
+  directory: /etc
   file: ddclient.conf
 
 ddclient_conf:

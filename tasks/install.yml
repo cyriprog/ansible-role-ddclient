@@ -8,16 +8,6 @@
     cache_valid_time: 86400
   become: true
 
-- name: Copy over DDClient Executable
-  synchronize:
-    src: "{{ ddclient_git_repo_dest }}/ddclient"
-    dest: "{{ ddclient_exec }}"
-    checksum: yes
-    times: no
-  delegate_to: "{{ inventory_hostname }}"
-  when: _ddclient_git_cloned.changed
-  become: true
-
 - name: Create /etc and /var/cache Directories
   file:
     path: "{{ item }}"
