@@ -26,6 +26,12 @@
 
 - name: Autostart DDClient Block
   block:
+    - name: Reload DDClient configuration
+      service:
+        name: ddclient
+        state: reload
+      when: ddclient_service_result.changed
+
     - name: Autostart DDClient
       service:
         name: ddclient
