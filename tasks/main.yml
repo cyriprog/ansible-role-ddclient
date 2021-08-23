@@ -29,7 +29,7 @@
     - name: Reload DDClient configuration
       service:
         name: ddclient
-        state: reload
+        state: reloaded
       when: ddclient_service_result.changed
 
     - name: Autostart DDClient
