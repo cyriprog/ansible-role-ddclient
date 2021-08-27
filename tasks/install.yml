@@ -27,6 +27,7 @@
     dest: "/etc/systemd/system/ddclient.service"
     owner: root
     group: root
+    mode: 0644
   become: true
   register: ddclient_service_result
 

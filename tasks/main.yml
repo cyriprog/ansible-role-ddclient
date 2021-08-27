@@ -9,6 +9,7 @@
     dest: "{{ ddclient_file.directory }}/{{ ddclient_file.file }}"
     owner: root
     group: root
+    mode: 0660
   become: true
   #notify: Restart DDClient
 
@@ -26,10 +27,9 @@
 
 - name: Autostart DDClient Block
   block:
-    - name: Reload DDClient configuration
-      service:
-        name: ddclient
-        state: reloaded
+    - name: Reload Configuration
+      systemd:
+         daemon_reload: yes
       when: ddclient_service_result.changed
 
     - name: Autostart DDClient
@@ -40,6 +40,12 @@
       ignore_errors: true
   rescue:
     - name: Show Output of Failed Service
-      shell: 'ddclient -daemon=0 -debug -verbose -noquiet'
+      command: 'ddclient -daemon=0 -debug -verbose -noquiet'
       register: _ddclient_systemd
-    - debug: var=_ddclient_systemd
+
+    - name: Display debug
+      debug: var=_ddclient_systemd
+      tags:
+        - never
+        - debug
+
