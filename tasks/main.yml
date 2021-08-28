@@ -9,7 +9,7 @@
     dest: "{{ ddclient_file.directory }}/{{ ddclient_file.file }}"
     owner: root
     group: root
-    mode: 0660
+    mode: 0600
   become: true
   #notify: Restart DDClient
 
@@ -21,7 +21,6 @@
     mode: "{{ item.mode }}"
     state: file
   with_items:
-    - { path: "{{ ddclient_file.directory }}/{{ ddclient_file.file }}", mode: "0700" }
     - { path: "{{ ddclient_exec }}", mode: "0775" }
   become: true
 
