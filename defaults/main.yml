@@ -29,6 +29,6 @@ ddclient_conf:
 
 ddclient_exec: /usr/sbin/ddclient
 ddclient_pid:
-  directory: /var/run/ddclient
+  directory: /run
   file: ddclient.pid
 ddclient_cache: /var/cache/ddclient
