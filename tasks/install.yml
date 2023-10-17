@@ -8,6 +8,20 @@
     cache_valid_time: 86400
   become: true
 
+- name: Check ddclient path
+  stat:
+    path: "{{ddclient_path}}"
+  loop:
+    - /usr/bin/ddclient
+    - /usr/sbin/ddclient
+  loop_control:
+    loop_var: ddclient_path
+  register: bin_ddclient
+
+- name: Get path
+  set_fact:
+    ddclient_exec: "{{ bin_ddclient.results | json_query('[?stat.exists].ddclient_path') | first() }}"
+
 - name: Create /etc and /var/cache Directories
   file:
     path: "{{ item }}"

@@ -27,7 +27,6 @@ ddclient_conf:
       password: value
       address: value
 
-ddclient_exec: /usr/sbin/ddclient
 ddclient_pid:
   directory: /run
   file: ddclient.pid
